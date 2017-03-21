@@ -1,9 +1,11 @@
 import React from 'react';
 
+// Import react-redux connector
+import Connect from '../config/connect';
+
 // Import components
-import Main from '../components/Main';
 import PhotoGrid from '../components/PhotoGrid';
-import SinglePhoto from '../components/SinglePhoto';
+import SinglePhotoGrid from '../components/SinglePhotoGrid';
 
 // Import React-Router components
 import { Router, Route, IndexRoute } from 'react-router';
@@ -15,9 +17,9 @@ import store, { history } from './store';
 const router = (
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={Main}>
+      <Route path="/" component={Connect}>
         <IndexRoute component={PhotoGrid} />
-        <Route path="/view/:photoId" component={SinglePhoto} />
+        <Route path="/view/:postId" component={SinglePhotoGrid} />
       </Route>
     </Router>
   </Provider>
