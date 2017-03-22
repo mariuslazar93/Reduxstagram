@@ -6,9 +6,12 @@ import Comments from './Comments'
 const SinglePhotoGrid = React.createClass({
   render(){
     const thisProps = this.props;
-    var post = {}, index = 0;
+    const postId = thisProps.params.postId;
+    var postComments = this.props.comments[postId] || [];
+    var post, index;
+
     this.props.posts.forEach((item, i) => {
-      if(thisProps.params.postId === item.code){
+      if(postId === item.code){
         post = item;
         index = i;
       }
@@ -16,7 +19,7 @@ const SinglePhotoGrid = React.createClass({
     return (
       <div className="single-photo">
         <Photo index={index} post={post} {...this.props} />
-        <Comments comments={this.props.comments[thisProps.params.postId]}/>
+        <Comments postComments={postComments} {...this.props} />
       </div>
     )
   }
